@@ -16,8 +16,8 @@ export default new Vuex.Store({
   actions,
   modules: {
     specs,
-    // cate,
-    // goods,
-    // banner
+    cate,
+    goods,
+    banner
   }
 })

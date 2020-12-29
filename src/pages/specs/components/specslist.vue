@@ -8,15 +8,21 @@
       default-expand-all
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
     >
-      <el-table-column prop="id" label="规格编号" sortable width="180"> </el-table-column>
+      <el-table-column prop="id" label="规格编号" sortable width="180">
+      </el-table-column>
       <el-table-column prop="specsname" label="规格名称" sortable width="180">
       </el-table-column>
       <template>
-    <el-table-column label="规格属性" sortable width="180">
-        <template slot-scope="scope">
-          <el-tag type="success" v-for="(item,index) in scope.row.attrs" :key="index">{{item}}</el-tag>
-        </template>
-      </el-table-column>
+        <el-table-column label="规格属性" sortable width="180">
+          <template slot-scope="scope">
+            <el-tag
+              type="success"
+              v-for="(item, index) in scope.row.attrs"
+              :key="index"
+              >{{ item }}</el-tag
+            >
+          </template>
+        </el-table-column>
       </template>
 
       <el-table-column label="状态">

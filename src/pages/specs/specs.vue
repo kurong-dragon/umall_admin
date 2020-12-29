@@ -11,8 +11,7 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      t
-      otal="total"
+      :total="total"
       :page-size="size"
       @current-change="changePage"
     >
@@ -46,13 +45,7 @@ export default {
         isshow: false,
         issadd: true,
       },
-      size: 2,
     };
-  },
-  methods: {},
-
-  computed: {
-    ...mapGetters({}),
   },
   mounted() {},
   methods: {
@@ -67,7 +60,7 @@ export default {
       this.info.isshow = true;
       this.$refs.add.getOne(id);
     },
-    changePage(v) {},
+    changePage(v){},
   },
 };
 </script>

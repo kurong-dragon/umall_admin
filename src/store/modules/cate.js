@@ -1,7 +1,7 @@
 import { ccateList } from "../../utils/http"
-// 1.搭了架子
+// 搭了架子
 let state = {
-    // 3.1 初始值
+    //  初始值
     list: []
 }
 let mutations = {
@@ -11,13 +11,13 @@ let mutations = {
     }
 }
 let getters = {
-    // 3.3 导出list
+    // 导出list
     list(state) {
         return state.list;
     }
 }
 let actions = {
-    // 3.4 处理list的逻辑
+    // 处理list的逻辑
     reqList(context) {
         //发请求 成功之后 修改
         ccateList({ istree: true }).then(res => {

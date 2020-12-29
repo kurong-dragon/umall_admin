@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-dialog title="收货地址" :visible.sync="info.isshow">
+    <el-dialog :title="info.issadd?'添加':'编辑'" :visible.sync="info.isshow">
       {{ user }}
       {{ attrsArr }}
       <el-form :model="user">
@@ -38,8 +38,8 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button>取 消</el-button>
-        <el-button type="primary" @click="addspecs">添加</el-button>
-        <el-button type="primary" @click="update">修改</el-button>
+        <el-button type="primary" @click="addspecs" v-if="info.issadd">添加</el-button>
+        <el-button type="primary" @click="update" v-else>修改</el-button>
       </div>
     </el-dialog>
   </div>
@@ -72,11 +72,11 @@ export default {
   },
   methods: {
     ...mapActions({
-      reqList:"specs/reqList"
+      reqList: "specs/reqList",
     }),
     //   弹窗小事
     cancel() {
-      if (!this.info.isadd) {
+      if (!this.info.issadd) {
         this.empty();
       }
       this.info.isshow = false;
@@ -93,7 +93,7 @@ export default {
     },
     // 修改
     update() {
-      this.user.attrs = JSON.stringify(this.attrsArr.map(item => item.value));
+      this.user.attrs = JSON.stringify(this.attrsArr.map((item) => item.value));
       specsedit(this.user).then((ww) => {
         if (ww.data.code == 200) {
           this.cancel();

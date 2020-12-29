@@ -271,49 +271,166 @@ export let specsAdd = (user) => {
     return axios({
         url: baseUrl + "/api/specsadd",
         method: "POST",
-        data:qs.stringify(user)
+        data: qs.stringify(user)
     })
 }
 
 // 商品规格总数(用于计算分页)
 export let specscount = () => {
     return axios({
-        url: baseUrl+"/api/specscount",
-        method:"GET"
+        url: baseUrl + "/api/specscount",
+        method: "GET"
     })
 }
 
 // 商品规格列表(分页)
 export let specslist = (p) => {
     return axios({
-        url:baseUrl+ "/api/specslist",
+        url: baseUrl + "/api/specslist",
         method: "GET",
-        params:p
+        params: p
     })
 }
 // 获取一条规格列表
 export let specsinfo = (id) => {
     return axios({
-        url:baseUrl+ "/api/specsinfo",
+        url: baseUrl + "/api/specsinfo",
         method: "GET",
-        params:id
+        params: id
     })
 }
 // 商品修改
 export let specsedit = (user) => {
     return axios({
-        url:baseUrl+ "/api/specsedit",
+        url: baseUrl + "/api/specsedit",
         method: "POST",
-        data:qs.stringify(user)
+        data: qs.stringify(user)
     })
 }
 
 // 商品规格删除
 export let specsdelete = (id) => {
     return axios({
-        url:baseUrl+ "/api/specsdelete",
+        url: baseUrl + "/api/specsdelete",
         method: "POST",
-        data:id
+        data: id
     })
 }
 
+// -----------------------------------商品管理
+
+// // 将数据加入文件
+// function fileToDataForm(file) {
+//     let data = new FormData();
+//     for (let i in file) {
+//         data.append(i, file[i]);
+//     }
+//     return data;
+// }
+
+// 商品添加
+export let goodsAdd = (user) => {
+    return axios({
+        url: baseUrl + "/api/goodsadd",
+        method: "POST",
+        data: fileToDataForm(user)
+    })
+}
+
+// 商品总数 
+export let goodsCount = () => {
+    return axios({
+        url: baseUrl + "/api/goodscount",
+        method: "GET"
+    })
+}
+// 商品分页
+export let goodsList = (a) => {
+    return axios({
+        url: baseUrl + "/api/goodslist",
+        method: "GET",
+        params: a
+    })
+}
+// 商品获取（一条）
+export let goodsInfo = (id) => {
+    return axios({
+        url: baseUrl + "/api/goodsinfo",
+        method: "GET",
+        params: {
+            id
+        }
+    })
+}
+// 商品修改
+export let goodsEdit = (user) => {
+    return axios({
+        url: baseUrl + "/api/goodsedit",
+        method: "POST",
+        data: fileToDataForm(user)
+    })
+}
+// 商品删除
+export let goodsDelete = (id) => {
+    return axios({
+        url: baseUrl + "/api/goodsdelete",
+        method: "POST",
+        data:
+            id
+
+    })
+}
+
+//************商品管理 
+
+//添加 
+export let reqgoodsAdd = (user) => {
+
+    return axios({
+        url: baseUrl + "/api/goodsadd",
+        method: "post",
+        data: fileToDataForm(user)
+    })
+}
+
+//列表
+export let reqgoodslist = (p) => {
+    return axios({
+        url: baseUrl + "/api/goodslist",
+        params: p
+    })
+}
+
+//详情 
+export let reqgoodsDetail = (user) => {
+    return axios({
+        url: baseUrl + "/api/goodsinfo",
+        method: "get",
+        params: user
+    })
+}
+
+//修改 
+export let reqgoodsUpdate = (user) => {
+    return axios({
+        url: baseUrl + "/api/goodsedit",
+        method: "post",
+        data: dataToFormData(user)
+    })
+}
+
+//删除 
+export let reqgoodsDel = (user) => {
+    return axios({
+        url: baseUrl + "/api/goodsdelete",
+        method: "post",
+        data: qs.stringify(user)
+    })
+}
+
+//总数
+export let reqgoodsCount = () => {
+    return axios({
+        url: baseUrl + "/api/goodscount"
+    })
+}

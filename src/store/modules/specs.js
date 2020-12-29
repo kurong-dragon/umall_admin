@@ -55,12 +55,13 @@ let actions = {
     reqTotal(context) {
         specscount().then(ww => {
             if (ww.data.code == 200) {
+                console.log(ww);
                 context.commit("changeTotal", ww.data.list[0].total)
             }
         })
     },
     changePage(context, num) {
-         //修改页码
+        //修改页码
         context.commit("changePage", num)
         //重新请求list
         context.dispatch("reqList")
