@@ -35,7 +35,6 @@ export default {
       },
     };
   },
-  mounted() {},
   methods: {
     ...mapActions({
       reqList: "cate/reqList"

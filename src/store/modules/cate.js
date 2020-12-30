@@ -5,7 +5,7 @@ let state = {
     list: []
 }
 let mutations = {
-    //3.2 修改list
+    //修改list
     changeList(state, arr) {
         state.list = arr;
     }

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
+
 
 
 
@@ -64,27 +66,42 @@ export let indexRoutes = [
 
 ]
 
-export default new Router({
+let router = new Router({
   routes: [
     {
       path: "/login",
-      component: () => import("../pages/login/login"),
-      name: "登录页",
-
-
+      component: () => import("../pages/login/login.vue")
     },
     {
       path: "/",
-      component: () => import("../pages/index/index"),
+      component: () => import("../pages/index/index.vue"),
       children: [
         {
           path: "",
-          component: () => import("../pages/home/home")
+          component: () => import("../pages/home/home.vue")
         },
         //12.恢复
         ...indexRoutes
       ]
     },
+
   ]
 })
 
+//登录拦截
+router.beforeEach((to, from, next) => {
+  //如果去到是登录 next
+  if (to.path === "/login") {
+    next()
+    return
+  }
+  //不是登录，判断是否登录，登录了，就next
+  if (store.state.userInfo.id) {
+    next()
+    return;
+  }
+  //否则 next("/login")
+  next("/login")
+})
+
+export default router

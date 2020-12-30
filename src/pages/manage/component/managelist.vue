@@ -47,8 +47,6 @@ export default {
   methods: {
     // 点击编辑
   manageemit(uid){
-
-    console.log(uid,"sdddddddddddddddddddddd")
     this.$emit("emit",uid)
   },
   // 点击删除

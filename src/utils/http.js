@@ -17,6 +17,9 @@ axios.interceptors.response.use(res => {
     console.groupEnd()
     return res
 })
+
+
+
 // 菜单添加
 export let menuAdd = (user) => {
     return axios({
@@ -114,6 +117,18 @@ export let roleEdit = (user) => {
 
     })
 }
+
+
+//登录
+export let reqLogin = (user) => {
+    return axios({
+        url: baseUrl + "/api/userlogin",
+        method: "post",
+        data: qs.stringify(user)
+    })
+}
+
+
 // 管理员添加
 export let userAdd = (user) => {
     return axios({
@@ -432,5 +447,81 @@ export let reqgoodsDel = (user) => {
 export let reqgoodsCount = () => {
     return axios({
         url: baseUrl + "/api/goodscount"
+    })
+}
+
+// --------------------------会员管理
+// 会员列表
+export let memberList = () => {
+    return axios({
+        url: baseUrl + "/api/memberlist",
+        method: "GET",
+
+    })
+}
+
+// 会员获取(一条)
+
+export let memberInfo = (obj) => {
+    return axios({
+        url: baseUrl + "/api/memberinfo",
+        method: "GET",
+        params: obj
+    })
+}
+
+// 会员修改
+
+export let memberEdit = (user) => {
+    return axios({
+        url: baseUrl + "/api/memberedit",
+        method: "POST",
+        data: qs.stringify(user)
+    })
+}
+
+
+// --------------限时秒杀
+
+// 秒杀添加
+export let secKadd = (user) => {
+    return axios({
+        url: baseUrl + "/api/seckadd",
+        method: "POST",
+        data: qs.stringify(user)
+    })
+}
+// 限时秒杀列表
+export let seckList = () => {
+    return axios({
+        url: baseUrl + "/api/secklist",
+        method: "GET",
+    })
+}
+// 限时秒杀获取（一条）
+export let seckInfo = (id) => {
+    return axios({
+        url: baseUrl + "/api/seckinfo",
+        method: "GET",
+        params: {
+            id
+        }
+    })
+}
+// 限时秒杀修改
+export let seckEdit = (user) => {
+    return axios({
+        url: baseUrl + "/api/seckedit",
+        method: "POST",
+        data: qs.stringify(user)
+    })
+}
+// 秒杀删除
+export let seckDelete = (id) => {
+    return axios({
+        url: baseUrl + "/api/seckdelete",
+        method: "POST",
+        data: {id}
+
     })
 }
