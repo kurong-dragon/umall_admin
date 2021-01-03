@@ -7,15 +7,7 @@
     <specs-add :info="info" ref="add"></specs-add>
     <!-- 列表 -->
     <specs-list @edit="edit"></specs-list>
-    <!-- 翻页 -->
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="total"
-      :page-size="size"
-      @current-change="changePage"
-    >
-    </el-pagination>
+   
   </div>
 </template>
 
@@ -47,7 +39,9 @@ export default {
       },
     };
   },
-  mounted() {},
+  mounted() {
+
+  },
   methods: {
     // 点击添加
     willisshow() {
@@ -60,7 +54,6 @@ export default {
       this.info.isshow = true;
       this.$refs.add.getOne(id);
     },
-    changePage(v){},
   },
 };
 </script>

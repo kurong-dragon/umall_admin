@@ -122,7 +122,6 @@ export default {
 <style scoped>
 /* 盒子 */
 .role {
-  border: 1px solid;
 }
 .roleword1 {
   font: 14px "微软雅黑";

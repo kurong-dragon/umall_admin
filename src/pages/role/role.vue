@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <!-- 添加 -->
     <el-row>
       <el-button type="primary" @click="rolewilladd">添加</el-button>
@@ -80,5 +80,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+.main{
+   margin-top: 20px;
+}
 </style>

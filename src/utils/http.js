@@ -10,11 +10,15 @@ Vue.prototype.$pre = "http://localhost:3000"
 // let baseUrl = ""
 // Vue.prototype.$pre = ""
 
-// 相应拦截
+// 响应拦截
 axios.interceptors.response.use(res => {
     console.group("本此请求的地址是" + res.config.url)
     console.log(res)
     console.groupEnd()
+
+    if (res.data.list === null) {
+        res.data.list = []
+    }
     return res
 })
 
@@ -121,6 +125,7 @@ export let roleEdit = (user) => {
 
 //登录
 export let reqLogin = (user) => {
+    console.log(user);
     return axios({
         url: baseUrl + "/api/userlogin",
         method: "post",
@@ -241,14 +246,14 @@ export let banneradd = (user) => {
 export let bannerlist = () => {
     return axios({
         url: baseUrl + "/api/bannerlist",
-        method: "GET",
+        method: "get",
     })
 }
 // 轮播图列表一条
 export let bannerinfo = (id) => {
     return axios({
         url: baseUrl + "/api/bannerinfo",
-        method: "G ET",
+        method: "GET",
         params:
             id
 
@@ -521,7 +526,7 @@ export let seckDelete = (id) => {
     return axios({
         url: baseUrl + "/api/seckdelete",
         method: "POST",
-        data: {id}
+        data: { id }
 
     })
 }

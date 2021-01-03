@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-row>
+    <el-row class="skill">
       <el-button type="success" @click="willadd()">添加</el-button>
     </el-row>
     <v-list :killlist="killlist" @emit="emit" @init="init"></v-list>
-    <v-add :info="info" ref="add"></v-add>
+    <v-add :info="info" ref="add" @init="init"></v-add>
   </div>
 </template>
 
@@ -58,5 +58,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.skill{
+  margin-top: 20px;
+}
 </style>

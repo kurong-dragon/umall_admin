@@ -6,7 +6,8 @@
       row-key="id"
       border
       :tree-props="{ children: 'children' }"
-    >
+     class="box"
+     >
       <el-table-column prop="id" label="商品编号" sortable></el-table-column>
       <el-table-column
         prop="goodsname"
@@ -109,4 +110,8 @@ export default {
     width: 80px;
     height: 80px;
   }
+ .box{
+  width: 100%;
+  height: 300px;
+}
 </style>

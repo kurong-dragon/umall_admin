@@ -4,15 +4,21 @@
       :title="info.isadd ? '添加菜单' : '编辑菜单'"
       :visible.sync="info.isshow"
       @closed="cancel"
+      
     >
-      <el-form :model="user" ref="user" label-width="100px">
+      <el-form :model="user" ref="user" label-width="100px"
+      >
         <!-- 菜单名称 -->
         <el-form-item label="菜单名称" prop="title">
           <el-input v-model="user.title"></el-input>
         </el-form-item>
         <!-- 上级菜单 -->
         <el-form-item label="上级菜单" prop="pid">
-          <el-select v-model="user.pid" placeholder="请选择活动区域">
+          <el-select
+            v-model="user.pid"
+            placeholder="请选择活动区域"
+            @change="changeType(user.pid)"
+          >
             <el-option :value="0" label="顶级菜单"></el-option>
             <el-option
               v-for="item in list"
@@ -25,14 +31,16 @@
         <!-- 菜单类型 -->
         <el-form-item label="菜单类型" prop="type">
           <el-radio-group v-model="user.type">
-            <el-radio :label="1">目录</el-radio>
-          </el-radio-group>
-          <el-radio-group v-model="user.type">
-            <el-radio :label="2">菜单</el-radio>
+            <el-radio :label="1" :value="1" disabled>目录</el-radio>
+            <el-radio :label="2" :value="2" disabled>菜单</el-radio>
           </el-radio-group>
         </el-form-item>
         <!-- 菜单图标 -->
-        <el-form-item label="菜单图标" prop="icon">
+        <el-form-item
+          label="菜单图标"
+          prop="icon"
+          v-if="istrue.issshow"
+        >
           <el-select v-model="user.icon">
             <el-option v-for="item in icons" :key="item" :value="item">
               <i :class="item"></i>
@@ -41,7 +49,7 @@
         </el-form-item>
         <!-- 菜单地址 -->
 
-        <el-form-item label="菜单地址" prop="url">
+        <el-form-item label="菜单地址" prop="url" v-if="istrue.issadd">
           <el-select v-model="user.url">
             <el-option
               v-for="item in indexRoutes"
@@ -92,6 +100,13 @@ export default {
         url: "",
         status: 2,
       },
+
+      // 图标和地址的出现
+      istrue: {
+        issshow: true,
+        issadd: false,
+      },
+
       icons: [
         "el-icon-setting",
         "el-icon-user-solid",
@@ -103,6 +118,19 @@ export default {
     };
   },
   methods: {
+    changeType(pid) {
+      console.log(pid, "1211111");
+      // 改变上级菜单改变菜单类型
+      if (pid === 0) {
+        this.user.type = 1;
+        this.istrue.issshow = true;
+        this.istrue.issadd = false;
+      } else {
+        this.user.type = 2;
+        this.istrue.issadd = true;
+        this.istrue.issshow = false;
+      }
+    },
     // 点击取消按钮
     cancel() {
       this.info.isshow = false;

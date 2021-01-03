@@ -4,6 +4,7 @@
       :title="info.issadd ? '添加商品' : '编辑商品'"
       :visible.sync="info.isshow"
       @opened="opened"
+      @closed="cancel"
     >
       <el-form :model="user">
         <el-form-item label="一级分类" label-width="100px">
@@ -94,7 +95,7 @@
       </el-form>
 
       <div slot="footer" class="dialog-footer">
-        <el-button>取 消</el-button>
+        <el-button @click="cancel">取 消</el-button>
         <el-button type="primary" @click="addspecs" v-if="info.issadd"
           >添加</el-button
         >

@@ -1,4 +1,5 @@
-export let state={
+
+export let state = {
     userInfo:sessionStorage.getItem("userInfo")?JSON.parse(sessionStorage.getItem("userInfo")):{}
 }
 export let getters={

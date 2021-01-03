@@ -1,8 +1,7 @@
 <template>
   <div>
-    <el-dialog :title="info.issadd?'添加':'编辑'" :visible.sync="info.isshow">
-      {{ user }}
-      {{ attrsArr }}
+    <el-dialog :title="info.issadd?'添加':'编辑'" :visible.sync="info.isshow"
+    @closed="cancel">
       <el-form :model="user">
         <el-form-item label="规格名称" label-width="100px">
           <el-input v-model="user.specsname"></el-input>
@@ -32,12 +31,12 @@
           </div>
         </el-form-item>
         <el-form-item label="状态" label-width="100px">
-          <el-switch v-model="user.status" active-value="2" inactive-value="1">
+          <el-switch v-model="user.status" :active-value="1" :inactive-value="2">
           </el-switch>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button>取 消</el-button>
+        <el-button @click="cancel()">取 消</el-button>
         <el-button type="primary" @click="addspecs" v-if="info.issadd">添加</el-button>
         <el-button type="primary" @click="update" v-else>修改</el-button>
       </div>
@@ -61,7 +60,7 @@ export default {
       user: {
         specsname: "",
         attrs: "[]",
-        status: 1,
+        status: 2,
       },
       //   新添加的属性规则
       attrsArr: [{ value: "" }],
@@ -108,7 +107,7 @@ export default {
       this.user = {
         specsname: "",
         attrs: "[]",
-        status: 1,
+        status: 2,
       };
       this.attrsArr = [{ value: "" }];
     },

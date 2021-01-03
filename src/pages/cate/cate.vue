@@ -2,7 +2,7 @@
   <div>
     <!-- 添加按钮 -->
     <el-row>
-      <el-button type="primary" @click="willAdd()">添加</el-button>
+      <el-button type="primary" class="add" @click="willAdd()">添加</el-button>
     </el-row>
 
     <!-- 商品添加 -->
@@ -66,5 +66,9 @@ export default {
 };
 </script>
 
-<style>
+<style  scoped>
+
+.add{
+  margin-top: 20px;
+}
 </style>

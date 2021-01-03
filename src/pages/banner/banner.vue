@@ -2,9 +2,9 @@
   <div>
     <!-- 添加按钮 -->
     <el-row>
-      <el-button type="primary" @click="willAdd()">添加</el-button>
+      <el-button class="box" type="primary" @click="willAdd()">添加</el-button>
     </el-row>
-   
+
     <!-- 商品添加 -->
     <banner-add :info="info" :list="list" @init="init" ref="add"></banner-add>
 
@@ -48,6 +48,7 @@ export default {
       bannerlist().then((ww) => {
         if (ww.data.code == 200) {
           this.list = ww.data.list;
+          console.log(this.list, ww);
         }
       });
     },
@@ -66,5 +67,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.box{
+  margin-top: 20px;
+}
 </style>

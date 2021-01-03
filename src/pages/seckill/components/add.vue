@@ -1,8 +1,9 @@
 <template>
   <div>
-    <el-dialog title="收货地址" :visible.sync="info.isshow">
+    <el-dialog title="添加秒杀" :visible.sync="info.isshow"
+    @closed="cancel"
+    >
       <el-form :model="user">
-        {{ user }}
         <el-form-item label="活动名称" label-width="120px">
           <el-input v-model="user.title" autocomplete="off"></el-input>
         </el-form-item>
@@ -53,19 +54,17 @@
         <el-form-item label="状态" label-width="120px">
           <el-switch
             v-model="user.status"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            active-value="1"
-            inactive-value="2"
+            :active-value="1"
+            :inactive-value="2"
           >
           </el-switch>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="killadd">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="killadd" v-if="info.issadd">确 定</el-button>
 
-        <el-button type="primary" @click="killemit">编辑</el-button>
+        <el-button type="primary" @click="killemit" v-else>编辑</el-button>
       </div>
     </el-dialog>
   </div>
@@ -115,9 +114,11 @@ export default {
     },
     getSecondList() {
       this.user.second_cateid = "";
-      ccateList({ pid: this.user.second_cateid }).then((res) => {
+      ccateList({ pid: this.user.first_cateid }).then((res) => {
+        console.log("sssssssssssssss")
         if (res.data.code == 200) {
           this.secondCateList = res.data.list;
+          console.log(this.secondCateList,"///////////;;;;;")
         }
       });
     },
@@ -126,7 +127,6 @@ export default {
       ccateList({ pid: this.user.first_cateid }).then((res) => {
         if (res.data.code == 200) {
           this.shopCateList = res.data.list;
-          console.log(this.shopCateList);
         }
       });
     },
@@ -182,6 +182,7 @@ export default {
           successalert(res.data.msg);
           this.cancel();
           this.empty();
+          this.$emit("init");
         }
       });
     },
@@ -192,6 +193,7 @@ export default {
     },
   },
   mounted() {
+
     if (this.cateList.length === 0) {
       this.ccateList();
     }

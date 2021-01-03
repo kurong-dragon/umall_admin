@@ -38,13 +38,13 @@
 
 <script>
 import { bannerdelete } from "../../../utils/http";
-import {successalert} from "../../../utils/alert"
+import { successalert } from "../../../utils/alert";
 export default {
   props: ["list"],
   methods: {
     // 删除
     del(id) {
-      bannerdelete({ id:id }).then((res) => {
+      bannerdelete({ id: id }).then((res) => {
         if (res.data.code == 200) {
           successalert(res.data.msg);
           this.$emit("init");
@@ -55,6 +55,9 @@ export default {
       //通知父组件有人点了编辑按钮
       this.$emit("edit", id);
     },
+  },
+  mounted() {
+    console.log(this.list);
   },
 };
 </script>

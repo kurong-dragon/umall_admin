@@ -1,7 +1,10 @@
 <template>
   <div>
-    <el-dialog title="商品分类添加" :visible.sync="info.isshow">
-      {{ user }}
+    <el-dialog
+      title="商品分类添加"
+      :visible.sync="info.isshow"
+      @closed="cancel"
+    >
       <el-form :model="user">
         <!-- 上级分类 -->
         <el-form-item label="上级分类" label-width="120px">
@@ -32,13 +35,7 @@
         </el-form-item>
         <!-- 状态 -->
         <el-form-item label="状态" label-width="120px">
-          <el-switch
-            v-model="user.status"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            active-value="1"
-            inactive-value="2"
-          >
+          <el-switch v-model="user.status" :active-value="1" :inactive-value="2">
           </el-switch>
         </el-form-item>
       </el-form>
@@ -55,7 +52,7 @@
 
 
 <script>
-import { cateAdd, reqcateDetail,reqcateUpdate } from "../../../utils/http";
+import { cateAdd, reqcateDetail, reqcateUpdate } from "../../../utils/http";
 import path from "path";
 import { erroralert, successalert } from "../../../utils/alert";
 export default {
@@ -69,7 +66,7 @@ export default {
         pid: 0,
         catename: "",
         img: null,
-        status: "1",
+        status: 2,
       },
 
       formLabelWidth: "120px",
@@ -92,7 +89,7 @@ export default {
         pid: "",
         catename: "",
         img: null,
-        status: 1,
+        status: 2,
       };
     },
     // 加入照片
@@ -123,6 +120,8 @@ export default {
           this.empty();
           this.cancel();
           this.$emit("init");
+        } else {
+          erroralert(ww.data.msg);
         }
       });
     },
@@ -140,7 +139,7 @@ export default {
     },
     // 修改
     update() {
-      reqcateUpdate(this.user).then(res => {
+      reqcateUpdate(this.user).then((res) => {
         if (res.data.code == 200) {
           //弹成功
           successalert(res.data.msg);
@@ -150,9 +149,11 @@ export default {
           this.empty();
           //刷新list
           this.$emit("init");
+        } else {
+          erroralert(ww.data.msg);
         }
       });
-    }
+    },
   },
 };
 </script>

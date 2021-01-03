@@ -7,6 +7,7 @@
       border
       default-expand-all
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
+      class="box"
     >
       <el-table-column prop="id" label="规格编号" sortable width="180">
       </el-table-column>
@@ -37,6 +38,12 @@
         </template>
       </el-table-column>
     </el-table>
+      <!-- 分页 -->
+    <el-pagination background layout="prev, pager, next" 
+    :total="total"
+    :page-size="size"
+    @current-change="changePage"
+    ></el-pagination>
   </div>
 </template>
 
@@ -84,5 +91,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.box{
+  width: 100%;
+  height: 500px;
+}
 </style>

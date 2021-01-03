@@ -21,6 +21,12 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+
+// -----图标插件
+
+
+
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

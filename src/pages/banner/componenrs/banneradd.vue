@@ -53,8 +53,6 @@ export default {
         img: null,
         status: "1",
       },
-
-      formLabelWidth: "120px",
     };
   },
 

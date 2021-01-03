@@ -1,7 +1,6 @@
 <template>
   <div>
     <el-dialog title="会员编辑" :visible.sync="info.isshow">
-      {{ user }}
       <el-form :model="user" @closed="cancel">
         <!-- 手机号 -->
         <el-form-item label="手机号" label-width="120px">
@@ -18,7 +17,7 @@
 
         <!-- 状态 -->
         <el-form-item label="状态" label-width="120px">
-          <el-switch v-model="user.status" active-value="1" inactive-value="2">
+          <el-switch v-model="user.status" :active-value="1" :inactive-value="2">
           </el-switch>
         </el-form-item>
       </el-form>
@@ -28,6 +27,7 @@
         <el-button type="primary" @click="cmemberinfo">修改</el-button>
       </div>
     </el-dialog>
+  
   </div>
 </template>
 
@@ -44,7 +44,7 @@ export default {
         nickname: "",
         phone: "",
         password: "",
-        status: 1,
+        status: 2,
       },
     };
   },
@@ -57,7 +57,7 @@ export default {
           nickname: "",
           phone: "",
           password: "",
-          status: 1,
+          status: 2,
         };
       }
       this.info.isshow = false;
@@ -66,7 +66,7 @@ export default {
     changeOne(uid) {
       memberInfo({ uid }).then((ww) => {
         this.user = ww.data.list;
-        this.user.password = ""
+        this.user.password = "";
       });
     },
     // 点击修改
